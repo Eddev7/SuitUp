@@ -1,0 +1,23 @@
+services:
+  mysql:
+    environment:
+      MYSQL_ROOT_PASSWORD: 'Sau9i78@Lt'
+      MYSQL_USER: 'Eddev'
+      MYSQL_PASSWORD: 'Sau9i78@Lt'
+      MYSQL_DATABASE: 'SuitUp'
+    container_name: SuitUp
+    image: mysql:8.1
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    ports: 
+      - 3306:3306
+    networks:
+      - suitup_network
+
+networks:
+  suitup_network:
+    driver: bridge
+
+volumes:
+  mysql_volume:
+    driver: local
