@@ -1,9 +1,8 @@
 import { Router } from 'express';
+import HomeController from '../Controllers/HomeController';
 
 const router = new Router();
 
-router.get('/', (req, res) => {
-  res.send('API - SuitUp');
-});
+router.get('/', HomeController.index);
 
 export default router;

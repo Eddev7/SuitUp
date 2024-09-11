@@ -1,4 +1,5 @@
 import app from './app';
+import db from './src/Config/mysqlConfig';
 import dotenv from 'dotenv';
 dotenv.config();
 
