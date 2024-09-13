@@ -18,7 +18,7 @@ async function db(query) {
         
         const response = await db.query(query);
 
-        return response[0].insertId;
+        return response;
     
     } catch(e) {
 

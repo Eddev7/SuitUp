@@ -13,6 +13,19 @@ class CustomersController {
             })
         }
     }
+
+    async update(req, res) {
+
+        try {
+            const update = await model.update({id: req.params.id , json: req.body});
+            res.send(update)
+        } catch(e) {
+            console.log(e);
+            res.status(400).json({
+                error: e.message
+            })
+        }
+    }
 }
 
 export default new CustomersController();
