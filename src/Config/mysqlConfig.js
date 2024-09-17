@@ -15,10 +15,9 @@ async function db(query) {
     try {
         
         db.connect();
-        
         const response = await db.query(query);
 
-        return response;
+        return response[0];
     
     } catch(e) {
 
