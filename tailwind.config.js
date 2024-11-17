@@ -6,11 +6,17 @@ export default {
       colors: {
         primary: "#C0C0A8",
         secundary: "#D8D8D8",
+        fundoproduto: "rgba(216, 216, 216, 0.3)",
         terceira: "#604848"
+      },
+      fontFamily: {
+        sans: ['Roboto Condensed', 'sans-serif'], // substitua 'Inter' pela sua fonte
+        serif: ['Merriweather', 'serif'],
+        mono: ['Roboto Mono', 'monospace'],
       },
       width: {
         25: "8rem",
-      },
+      },  
       height: {
         40: "10rem"
       }
