@@ -1,9 +1,7 @@
-import HeaderPages from "../components/Header/header";
 import { Input, GenderInput} from "../components/Inputs/Inputs";
 
 export default function Cadastro() {
     return <>
-        <HeaderPages/>
         <form className="flex flex-col justify-center items-center gap-4">
             <h1 className="text-4xl mt-5">CADASTRO</h1>
             <Input name="nome" labelText="Nome:" placeholder="Digite seu primeiro nome" type="text"/>
