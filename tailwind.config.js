@@ -7,7 +7,8 @@ export default {
         primary: "#C0C0A8",
         secundary: "#D8D8D8",
         fundoproduto: "rgba(216, 216, 216, 0.3)",
-        terceira: "#604848"
+        terceira: "#3C3C5F",
+        menu: "#E8E8CC"
       },
       fontFamily: {
         sans: ['Roboto Condensed', 'sans-serif'], // substitua 'Inter' pela sua fonte

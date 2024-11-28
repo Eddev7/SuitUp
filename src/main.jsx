@@ -2,24 +2,32 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
+// redux
+import { Provider } from 'react-redux'
+import store from './store/store.js'
+
 //router DOM
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-// importação das paginas
+// importação das paginas e componentes.
 import Home from './pages/Home.jsx';
 import Cadastro from './pages/Cadastro.jsx';
 import Login from './pages/Login.jsx';
 import Menu from './components/Menu/Menu.jsx';
+import Produto from './pages/Produto.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Menu/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/cadastro' element={<Cadastro/>}/>
-        <Route path='/login' element={<Login/>}/>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Menu/>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/cadastro' element={<Cadastro/>}/>
+          <Route path='/login' element={<Login/>}/>
+          <Route path='/produto/:id' element={<Produto/>}/>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
 )
