@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import 'animate.css';
 
 export function Input(props) {
     return <div className="flex flex-col w-11/12 lg:w-1/2 gap-1">
@@ -10,7 +11,7 @@ export function Input(props) {
             className="border border-solid border-black p-3 rounded-md text-xs"
             onChange={props.onChange}
         />
-        <div className={` text-red-600 ${props.error ? '' : 'hidden'}`}>
+        <div className={` text-red-600 ${props.error ? '' : 'hidden'} animate__animated animate__fadeIn`}>
           {props.error}        
         </div>
     </div>

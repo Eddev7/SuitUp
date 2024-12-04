@@ -5,8 +5,8 @@ const initialState = {
 }
 
 const bagReducer = (state = initialState, action) => {
-    console.log(state)
     if(action.type === bagActionsTypes.ADD) {
+        console.log(state)
         return { ...state, bag: [...state.bag, action.payload.produto]};
     }
 

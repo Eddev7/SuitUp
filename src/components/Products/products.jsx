@@ -3,7 +3,7 @@ import ProductCard from "../ProductCard/productCard";
 import Filtro from "../Filtro/filtro";
 import api from '../../config/axiosConfig'
 
-export default function Products({ search }) {
+export default function Products({ search, setIsLoad, isLoad }) {
 
   const [comprarFilter, setFilterComprar] = useState(false);
   const [aluguelFilter, setFilterAluguel] = useState(false);
@@ -12,8 +12,10 @@ export default function Products({ search }) {
   useEffect(() => {
     async function fetchData() {
       try {
+        setIsLoad(true); 
         const response = await api.get('/products');
-        setProdutos(response.data);
+        setProdutos(response.data)
+        setIsLoad(false)
       } catch (err) {
       }
     }
@@ -46,10 +48,10 @@ export default function Products({ search }) {
     <>
 
       {/* seção do filtro de compra / aluguel */}
-      <Filtro handleFilter={handleFilter} comprarFilter={comprarFilter} aluguelFilter={aluguelFilter}/>
+      <Filtro handleFilter={handleFilter} comprarFilter={comprarFilter} aluguelFilter={aluguelFilter} className={` ${isLoad ? "animate-pulse" : ""} `}/>
 
       {/* seção de produtos */}
-      <section className="flex justify-center">
+      <section className={`flex justify-center`}>
         <section className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-20">
           {
             produtos.map((produto) => {

@@ -8,7 +8,8 @@ export default {
         secundary: "#D8D8D8",
         fundoproduto: "rgba(216, 216, 216, 0.3)",
         terceira: "#3C3C5F",
-        menu: "#E8E8CC"
+        menu: "#E8E8CC",
+        blackTrans: "rgba(0, 0, 0, 0.6)",
       },
       fontFamily: {
         sans: ['Roboto Condensed', 'sans-serif'], // substitua 'Inter' pela sua fonte
@@ -17,9 +18,11 @@ export default {
       },
       width: {
         25: "8rem",
+        110: "36rem"
       },  
       height: {
-        40: "10rem"
+        40: "10rem",
+        111: "36rem"
       }
     },
   },

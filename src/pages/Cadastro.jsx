@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Input, GenderInput} from "../components/Inputs/Inputs";
 import { validate } from "email-validator";
 import { cpf } from "cpf-cnpj-validator"; 
+import api from "../config/axiosConfig";
+import { useNavigate } from "react-router";
 
 const validarFormulario = (nome, sobrenome, email, CPF, senha, repetirSenha, genero) => {
     const erros = {};
@@ -66,18 +68,33 @@ export default function Cadastro() {
     const [repetirSenha, setRepetirSenha] = useState('');
     const [genero, setGenero] = useState('');
     const [error, setError] = useState({});
+
+    let navigate = useNavigate();
   
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
       e.preventDefault();
 
       const errors = validarFormulario(nome, sobrenome, email, CPF, senha, repetirSenha, genero);
 
-      if(errors.length == 0) {
-        setError({});
-        e.onSubmit();
-      } else {
-        setError(errors)
+      setError(errors)
+
+      if(errors.nome || errors.sobrenome || errors.email || errors.CPF || errors.senha || errors.repetirSenha) return;
+
+      try {
+        await api.post(`/register`, {
+          nome,
+          sobrenome,
+          email,
+          cpf,
+          genero,
+          senha
+        });
+      } catch(e) {
+        console.log(e);
+      } finally {
+        navigate('/login')
       }
+
     }
 
     return <>

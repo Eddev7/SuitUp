@@ -14,7 +14,7 @@ import Home from './pages/Home.jsx';
 import Cadastro from './pages/Cadastro.jsx';
 import Login from './pages/Login.jsx';
 import Menu from './components/Menu/Menu.jsx';
-import Produto from './pages/Produto.jsx'
+import ProductPage from './pages/ProductPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -25,7 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/' element={<Home/>}/>
           <Route path='/cadastro' element={<Cadastro/>}/>
           <Route path='/login' element={<Login/>}/>
-          <Route path='/produto/:id' element={<Produto/>}/>
+          <Route path='/product/:id' element={<ProductPage/>}/>
         </Routes>
       </BrowserRouter>
     </Provider>
