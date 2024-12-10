@@ -15,6 +15,7 @@ export default function Products({ search, setIsLoad, isLoad }) {
         setIsLoad(true); 
         const response = await api.get('/products');
         setProdutos(response.data)
+        console.log(response.data)
         setIsLoad(false)
       } catch (err) {
       }
