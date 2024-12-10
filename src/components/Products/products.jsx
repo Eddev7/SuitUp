@@ -46,7 +46,6 @@ export default function Products({ search, setIsLoad, isLoad }) {
 
   return (
     <>
-
       {/* seção do filtro de compra / aluguel */}
       <Filtro handleFilter={handleFilter} comprarFilter={comprarFilter} aluguelFilter={aluguelFilter} className={` ${isLoad ? "animate-pulse" : ""} `}/>
 

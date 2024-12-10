@@ -15,6 +15,7 @@ import Cadastro from './pages/Cadastro.jsx';
 import Login from './pages/Login.jsx';
 import Menu from './components/Menu/Menu.jsx';
 import ProductPage from './pages/ProductPage.jsx'
+import Cart from './pages/Cart.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/cadastro' element={<Cadastro/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/product/:id' element={<ProductPage/>}/>
+          <Route path='/cart' element={<Cart/>}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

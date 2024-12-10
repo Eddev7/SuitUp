@@ -1,5 +1,6 @@
 const bagActionsTypes = {
-    ADD: "add/bag"
+    ADD: "add/bag",
+    REMOVE: "remove/bag"
 }
 
 export default bagActionsTypes;

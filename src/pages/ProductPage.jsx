@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import api from '../config/axiosConfig';
 import SizeSelector from '../components/SizeSelector/sizeSelector';
 import { Link } from 'react-router-dom';
+import Loading from '../components/Loading/loading';
 
 //redux
 import { useDispatch } from "react-redux"
@@ -22,6 +23,7 @@ export default function ProductPage() {
     const [qnt, setQnt] = useState(1);
     const [error, setError] = useState('');
     const [isAddBag, setIsAddBag] = useState(false);
+    const [isLoad, setIsLoad] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -42,10 +44,12 @@ export default function ProductPage() {
     useEffect(() => {
         async function fetchData() {
           try {
+            setIsLoad(true);
             const response = await api.get(`/products/${id}`);
             setProduto(response.data);
             setTamanhos(response.data.tamanhos.split(','))
             setPreco((response.data.preco).toFixed(2))
+            setIsLoad(false)
           } catch (err) {
           }
         }
@@ -53,7 +57,7 @@ export default function ProductPage() {
     }, []);
     
     return <>
-        
+        <Loading isLoad={isLoad}/>
         {/* Menu de escolha */}
         <div className={`${isAddBag ? '' : 'hidden'} fixed h-screen w-screen bg-blackTrans flex justify-center animate__animated animate__fadeIn z-30`}>
           <div className='w-110 h-52 bg-white mt-60 rounded-xl flex flex-col justify-center items-center animate__animated animate__fadeInUp'>
@@ -61,25 +65,24 @@ export default function ProductPage() {
             <p className='text-gray-400'>O que você deseja fazer a seguir?</p>
             <div className='flex w-full gap-10 justify-center'>
               <Link to={'/'} className="mb-4 mt-4 font-bold w-1/3 tracking-wider bg-terceira p-2 lg:p-4 lg:text-base text-sm text-white shadow-md rounded-md border-2 hover:border-black hover:solid hover:bg-fundoproduto hover:text-black transition">
-                <button          
-                  >Continuar Comprando
-                </button>
+                <button className='w-full'>Continuar Comprando</button>
               </Link>
-              <button 
-                className="mb-4 mt-4 font-bold w-1/3 tracking-wider bg-terceira p-2 lg:p-4 lg:text-base text-sm text-white shadow-md rounded-md border-2 hover:border-black hover:solid hover:bg-fundoproduto hover:text-black transition"
-                >Finalizar Compra
-              </button>
+              <Link to={'/cart'} className="mb-4 mt-4 font-bold w-1/3 tracking-wider bg-terceira p-2 lg:p-4 lg:text-base text-sm text-white shadow-md rounded-md border-2 hover:border-black hover:solid hover:bg-fundoproduto hover:text-black transition">
+                <button className='w-full'>Finalizar Compra</button>
+              </Link>
             </div>
           </div>
         </div>
 
         {/*Pagina do produto*/}
         <section className='flex flex-col lg:flex-row m-20 gap-10 justify-center items-center'>
-            <img src={produto.image} alt="" className='h-111 p-1 rounded-lg bg-slate-500 animate__animated animate__fadeInDown'/>
+            <div className='w-110 p-2 rounded-lg bg-slate-500 flex items-center justify-center animate__animated animate__fadeInLeft'>
+              <img src={`data:image/png;base64,` + produto.image} alt="" className='h-111 w-110 bg-white rounded-lg object-contain '/>
+            </div>
             <div className='w-110 h-111 flex flex-col justify-start items-start'>
                 <h1 className='text-4xl font-light mb-3'>{produto.nome}</h1>
                 <span className='text-3xl font-semibold'>R$ {preco.replace('.', ',')}</span>
-                <small className='leading-4 text-base'>no cartão em até <strong>10x</strong> de<br/> <strong>R$ {(Number(preco)/10).toFixed(2).replace('.', ',')}</strong> sem juros</small>
+                <small className={`leading-4 text-base ${produto.aluguel ? 'opacity-0' : ''}`}>no cartão em até <strong>10x</strong> de<br/> <strong>R$ {(Number(preco)/10).toFixed(2).replace('.', ',')}</strong> sem juros</small>
                 <section className='mt-3'>
                     <h3 className='mb-4'><strong>Tamanhos:</strong></h3>
                     <div className={`${error ? '' : 'hidden'} text-red-700 animate__animated animate__fadeIn`}>{error}</div>

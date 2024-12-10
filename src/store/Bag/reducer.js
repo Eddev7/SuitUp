@@ -6,8 +6,14 @@ const initialState = {
 
 const bagReducer = (state = initialState, action) => {
     if(action.type === bagActionsTypes.ADD) {
-        console.log(state)
         return { ...state, bag: [...state.bag, action.payload.produto]};
+    }
+    if(action.type == bagActionsTypes.REMOVE) {
+        const indexProd = action.payload.index;
+        const newbag = state.bag.filter((produto, index) => {
+            if(index != indexProd) return produto;
+        });
+        return { ...state, bag: [...newbag]};
     }
 
     return state;
